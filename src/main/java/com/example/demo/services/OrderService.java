@@ -7,6 +7,7 @@ import com.example.demo.entities.enums.OrderStatus;
 import com.example.demo.repositories.OrderRepository;
 import com.example.demo.services.exceptions.ResourceBookSoldOutException;
 import com.example.demo.services.exceptions.ResourceNotFoundException;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +29,7 @@ public class OrderService {
 
     public Order saveWidthdraw(Order order){
         if(order.getBooks().getTot_available() >= 0){
+            twilioService.sendMessageToCreateOrder(order);
             return repository.save(order);
 
         } else {

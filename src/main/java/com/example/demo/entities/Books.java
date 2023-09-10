@@ -56,6 +56,7 @@ public class Books implements Serializable {
 
     public void devolutionBook(Books obj){
         obj.setTot_available(obj.getTot_available() + 1);
+        obj.setTot_local(obj.getTot_local() + 1);
         if(obj.getBooksStatus().getCode() == 2){
             setBookStatus(BooksStatus.valueOf(1));
             return;
